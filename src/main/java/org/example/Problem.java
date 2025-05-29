@@ -58,5 +58,35 @@ public class Problem {
 
         return result;
     }
+    public Result solveDantzig(int capacity) {
+        List<Item> sortedItems = new ArrayList<>(items);
+
+        // Sort by sortValue descending
+        sortedItems.sort(new Comparator<Item>() {
+            @Override
+            public int compare(Item i1, Item i2) {
+                return Float.compare(i2.getSortValue(), i1.getSortValue());
+            }
+        });
+
+        Result result = new Result();
+        boolean isFilled = false;
+
+        while (!isFilled) {
+            if (sortedItems.isEmpty() || capacity <= 0) {
+                isFilled = true;
+            } else if (sortedItems.getFirst().getWeight() > capacity) {
+                sortedItems.removeFirst();
+            } else {
+                Item selected = sortedItems.getFirst();
+                result.getItems().add(selected.getId());
+                result.setSumWeight(result.getSumWeight() + selected.getWeight());
+                result.setSumValue(result.getSumValue() + selected.getValue());
+                capacity -= selected.getWeight();
+            }
+        }
+
+        return result;
+    }
 }
 

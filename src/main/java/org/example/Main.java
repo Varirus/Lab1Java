@@ -41,5 +41,8 @@ public class Main {
 
         System.out.println("Solution for capacity " + capacity);
         System.out.println(problem.solve(capacity));
+
+        System.out.println("Solution Dantzig for capacity " + capacity);
+        System.out.println(problem.solveDantzig(capacity));
     }
 }

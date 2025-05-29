@@ -27,15 +27,18 @@ public class ProblemTest {
     public void testProblemBehavior(int seed, int n, int capacity) {
         Problem problem = new Problem(n, seed);
         Result result = problem.solve(capacity);
+        Result resultDanzig = problem.solveDantzig(capacity);
 
         if (seed == 402 && n == 20 && capacity == 10) {
             // At least one item should fit
             assertNotEquals(0, result.getItems().size());
+            assertNotEquals(0, resultDanzig.getItems().size());
         }
 
         if (seed == 542324 && n == 20 && capacity == 0) {
             // No items should fit
             assertEquals(0, result.getItems().size());
+            assertEquals(0, resultDanzig.getItems().size());
         }
 
         if (seed == 0 && n == 10 && capacity == 40) {
@@ -56,6 +59,9 @@ public class ProblemTest {
             assertEquals(0, result.getSumWeight());
             assertEquals(0, result.getSumValue());
             assertEquals(0, result.getItems().size());
+            assertEquals(0, resultDanzig.getSumWeight());
+            assertEquals(0, resultDanzig.getSumValue());
+            assertEquals(0, resultDanzig.getItems().size());
         }
 
         if (seed == 746345 && n == 20 && capacity == 40) {

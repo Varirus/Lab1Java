@@ -41,6 +41,7 @@ public class Result {
             output.append(item).append(" ");
         }
         output.append("\n");
+        output.append("Amount of items: ").append(items.size()).append("\n");
         output.append("Sum Weight: ").append(sumWeight).append("\n");
         output.append("Sum Value: ").append(sumValue).append("\n");
         return output.toString();
